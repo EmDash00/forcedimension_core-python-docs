@@ -1,6 +1,3 @@
-[submodule "forcedimension-python"]
-	path = forcedimension-python
-	url = https://github.com/EmDash00/forcedimension-python.git
 [submodule "forcedimension_core-python"]
 	path = forcedimension_core-python
 	url = git@github.com:EmDash00/forcedimension_core-python.git

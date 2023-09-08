@@ -1,6 +1,6 @@
 # Force Dimension Core Python Bindings Documentation
 
-![build](https://img.shields.io/readthedocs/forcedimension_core-python-documentation)
+![Documentation Status](https://img.shields.io/readthedocs/force-dimension-core-python-documentation)
 
 This is a GitHub repository dedicated to the [Force Dimension Core Python Bindings](https://github.com/EmDash00/forcedimension_core-python) documentation.
 

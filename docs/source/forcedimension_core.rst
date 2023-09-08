@@ -5,7 +5,7 @@ Subpackages
 -----------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    forcedimension_core.dhd
    forcedimension_core.drd
@@ -13,26 +13,7 @@ Subpackages
 Submodules
 ----------
 
-forcedimension_core.runtime module
-----------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: forcedimension_core.runtime
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-forcedimension_core.typing module
----------------------------------
-
-.. automodule:: forcedimension_core.typing
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: forcedimension_core
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   forcedimension_core.typing

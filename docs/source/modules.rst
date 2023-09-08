@@ -2,6 +2,6 @@ forcedimension_core
 ===================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 3
 
    forcedimension_core

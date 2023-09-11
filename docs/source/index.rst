@@ -3,49 +3,86 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the Python Force Dimension Bindings Documentation!
+Welcome to the Force Dimension Python Bindings Documentation!
 ===============================================================
 
-The ForceDimension API published by Force Dimension allows users to control
-supported haptic devices using C++.
+The Force Dimension Python Bindings allow users to interact with the Force Dimension SDK's
+C/C++ API in Python.
 
-Force Dimension Python an unofficial attempt to provide a open source, performant, and
-Pythonic interface for interacting with the original C++ API so that libraries such as
-NumPy may be used to render haptics. It was created by Ember Chow during her work at both the
-Rothlab and Trusting AI projects at IU: Bloomington for use in scientific experiments
-involving haptics using the Novint Falcon. This project is continuing to be used as a part of
-her research at University of Washington - Seattle.
+.. code-block:: python
 
-It consists of two parts: low-level bindings and high level wrappers.
+  import sys
+  from forcedimension_core import dhd
+  from forcedimension_core.dhd.os_independent import kbHit, kbGet
 
-The low-level bindings mimic the original ForceDimension C++ API closely; however, some
-liberties were taken to make the calls more Pythonic. For example, many calls ask for
-pointers to be passed in. In the low-level bindings, a list is asked for instead. If no
-list is provided, a new one is created.
+  b = 5  # damping coefficient in [N][s]/[m]
+  k = 150  # spring constant in [N]/[m]
 
+  # Storage buffers
+  pos = [0.0, 0.0, 0.0]
+  v = [0.0, 0.0, 0.0]
+  f = [0.0, 0.0, 0.0]
 
-The high level wrappers create an object oriented interface for the ForceDimension API. They
-introduce context management and a custom daemon that polls for the device state in background
-threads.
+  # Try to open the first available device
+  if (ID := dhd.open()) == -1:
+    print(f"Error: {dhd.errorGetLastStr()}")
+    sys.exit(1)
 
-This library is currently in alpha; however, low-level bindings should be largely stable.
-High-level wrappers may introduce breaking changes until release v1.0.0. An official release will only
-be considered after Force Dimension runs tests on the API.
+  if (name := dhd.getSystemName()) is not None:
+    print(isinstance(name, str))  # prints "True"
+    print(name)
 
+  # Run until button 0 is pressed (typically the center or only button)
+  # or q is pressed on the keyboard
+  try:
+    while not (dhd.getButton(index=0) or (kbHit() and kbGet() == 'q')):
+      # Try to get the position
+      if (dhd.getPosition(out=pos) == -1):
+        raise dhd.errno_to_exception(dhd.errorGetLast())(
+          op=dhd.getPosition, ID=ID
+        )
+
+      # Try to get the velocity
+      if (dhd.getLinearVelocity(out=v) == -1):
+        raise dhd.errno_to_exception(dhd.errorGetLast())(
+          op=dhd.getLinearVelocity, ID=ID
+        )
+
+      # Set the dynamics to be a spring-mass damper
+      f[0] = -k * pos[0] - b * v[0]
+      f[1] = -k * pos[1] - b * v[1]
+      f[2] = -k * pos[2] - b * v[2]
+
+      # Try to set the force
+      if (dhd.setForce(f) == -1):
+        raise dhd.errno_to_exception(dhd.errorGetLast())(
+          op=dhd.setForce, ID=ID
+        )
+  except Exception as ex:
+      print(str(ex))
+  finally:
+    # On error, close the device and gracefully exit
+    dhd.close(ID)
+    sys.exit(1)
 
 Copyright
 =========
-The ForceDimension API and documentation is property of Force Dimension, all rights reserved.
-This code does **not** involve any reverse engineering or distribution of proprietary code.
-Users are encouraged to download the ForceDimension API through publicly available download
-links provided by Force Dimension. Documentation was generated using Sphinx. Many parts are
-copied from the original C++ API with the express permission of Force Dimension.
+The Force Dimension SDK and documentation is property of Force Dimension, all rights reserved.
+This project is NOT directly associated with Force Dimension. It does NOT involve reverse-engineering
+or distribution of proprietary code. Docstrings are lifted from the Force Dimension SDK documentation
+and revised to fit the Python bindings with the express permission of Force Dimension.
+
+The Python code itself is licensed under GPLv3 for the benefit of public research.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    modules.rst
+   installation.rst
+   theory_of_operation.rst
+   forcedimension_core.dhd-doc.rst
+   forcedimension_core.drd-doc.rst
 
 Indices and tables
 ==================

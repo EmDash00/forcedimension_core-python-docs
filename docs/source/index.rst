@@ -13,7 +13,6 @@ C/C++ API in Python.
 
   import sys
   from forcedimension_core import dhd
-  from forcedimension_core.dhd.os_independent import kbHit, kbGet
 
   b = 5  # damping coefficient in [N][s]/[m]
   k = 150  # spring constant in [N]/[m]
@@ -35,7 +34,10 @@ C/C++ API in Python.
   # Run until button 0 is pressed (typically the center or only button)
   # or q is pressed on the keyboard
   try:
-    while not (dhd.getButton(index=0) or (kbHit() and kbGet() == 'q')):
+    while not (
+      dhd.getButton(index=0) or
+      (dhd.os_independent.kbHit() and dhd.os_independent.kbGet() == 'q')
+    ):
       # Try to get the position
       if (dhd.getPosition(out=pos) == -1):
         raise dhd.errno_to_exception(dhd.errorGetLast())(

@@ -3,7 +3,7 @@ Theory of Operation
 
 .. note::
   Prior to v0.1.0, the bindings were included in the ``forcedimension`` Python package; however, as of
-  ``forcedimension`` v0.2.0rc1, that package only contains higher level wrappers.
+  ``forcedimension`` v0.2.0-rc.1, that package only contains higher level wrappers.
   The low level bindings were refactored here as to not have dependencies such as numpy.
 
 

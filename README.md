@@ -13,7 +13,7 @@ https://forcedimension_core-python-documentation.readthedocs.io/en/latest/
 
 ```
 python3 -m pip install pipenv  # if you don't already have it
-pipenv install
+python3 -m pipenv install
 ```
 
 

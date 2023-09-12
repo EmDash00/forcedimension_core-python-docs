@@ -14,10 +14,6 @@ every supported Python version at the time of release (currently ≥3.8).
 Install the Force Dimension SDK
 -------------------------------
 
-.. note::
-  Mac OS is not supported because Force Dimension does not provide
-  dynamic link library files in their downloads for Mac OS as of Force Dimension SDK v3.14.0.
-
 Go to https://www.forcedimension.com/software and install the latest version of the SDK.
 The library will always check that the SDK version installed is greater than the version
 that it targets (i.e. v3.16.0 is assumed to be compatible with v3.15.0).
@@ -25,7 +21,7 @@ that it targets (i.e. v3.16.0 is assumed to be compatible with v3.15.0).
 This release of the Force Dimension Python Bindings targets v3.14.0. The library will search
 in the following locations to find the Force Dimension SDK dynamic link libraries.
 
-On Linux:
+On Mac/Linux:
 
 -  ``/usr/local/lib``
 -  ``/usr/lib``
@@ -40,8 +36,8 @@ Windows System-Wide Install
 
 Run the executable under the link provided and use the default installation location.
 
-Linux System-Wide Install
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Mac/Linux System-Wide Install
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Add the following to the Makefile included in the library's root folder, replacing ``X.X.X``
 with your version. Then run ``make install``. If you installed a previous version, this will change the

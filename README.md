@@ -6,7 +6,7 @@ This is a GitHub repository dedicated to the [Force Dimension Core Python Bindin
 
 If you're looking for the documentation please go to:
 
-https://forcedimension_core-python-documentation.readthedocs.io/en/latest/
+https://force-dimension-core-python-documentation.readthedocs.io
 
 ## Install required dependencies
 

@@ -12,6 +12,9 @@ conventions, and terms. This document was adapted from the C/C++ API official do
 purpose of facilitating Python programmers; however, there may be errors and the users should always refer
 to the official documentation. This version of the bindings targets SDK v3.14.0.
 
+
+.. _device_types:
+
 Device Types
 ------------
 
@@ -85,6 +88,8 @@ Force Dimension haptic devices statuses can be retrieved via the :func:`forcedim
 The status returned is a :class:`forcedimension_core.dhd.adaptors.StatusTuple`. See the class for more details on the meaning
 of individual statuses.
 
+.. _multiple_devices:
+
 Support for Multiple Devices
 ----------------------------
 
@@ -93,6 +98,8 @@ a device is opened, it recieves and ID that uniquely identifies it within the SD
 commands from the SDK can be gotten via :func:`forcedimension_core.dhd.getDeviceID()` and set via
 :func:`forcedimension_core.dhd.setDevice()`. Every device specific function of the SDK can take as an optional
 last argument the device ID. If no device ID is given, or if that ID is -1, the default device is used.
+
+.. _velocity_estimator:
 
 Velocity Estimator
 ------------------
@@ -116,6 +123,8 @@ The estimated velocity can be retrieved by calling:
 
 Currently, the only supported velocity estimator mode is :data:`forcedimension_core.dhd.constants.VELOCITY_WINDOWING`.
 The default window size (in [ms]) for the velocity estimator is :data:`forcedimension_core.dhd.constants.VELOCITY_WINDOW`.
+
+.. _time_guard:
 
 TimeGuard
 ---------
@@ -143,6 +152,9 @@ to the device or its geometric model.
 Thus, multi-threading is fully supported by the SDK. The Python bindings do not bind the platform independent
 threading functions offerred by the C/C++ API as Python already has its own threading library. You are recommended
 to use that instead.
+
+
+.. _error_management:
 
 Error Management
 ----------------
@@ -188,8 +200,10 @@ Initialization
 ^^^^^^^^^^^^^^
 Initialization is necessary to obtain accurate, reproducible localization of the end-effector within the workspace of the device. Force Dimension haptic devices are designed in such a way that there can be no drift of the calibration over time, so the procedure only needs to be performed once when the device is powered on. The calibration procedure consists in placing the calibration pole in the dedicated calibration pit. The device detects when the calibration position is reached and the status LED stops blinking.
 
-Controller
-^^^^^^^^^^
+.. _device_controller:
+
+Device Controller
+^^^^^^^^^^^^^^^^^
 The electronic controller is responsible for the real-time behavior of the device. It connects to the host computer and provides the low-level safety features such as velocity thresholding and communication timeouts.
 
 Default Device
@@ -212,6 +226,8 @@ Gravity compensation can be disabled by calling :func:`forcedimension_core.dhd.s
 Single Device Calls
 ^^^^^^^^^^^^^^^^^^^
 When used with a single Force Dimension haptic device, programmers should use the single device version of the functions. Single device calls use the null default device ID, unlike the multiple devices SDK calls, which explicitly take the device ID as a last argument.
+
+.. _velocity_threshold:
 
 Velocity Threshold
 ^^^^^^^^^^^^^^^^^^

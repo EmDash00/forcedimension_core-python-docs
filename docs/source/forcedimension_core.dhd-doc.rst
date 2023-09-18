@@ -21,30 +21,66 @@ Device Types
 Devices in the library have a type which can be retrieved via :func:`forcedimension_core.dhd.getSystemType()`
 and they are encoded with :class:`forcedimension_core.dhd.constants.DeviceType`.
 
-The supported devices (and their encoded system types) for DHD v3.14.0 are:
+The supported devices (and their encoded system types) for DHD v3.16.0 are:
 
-- Second generation DELTA.X Haptic Devices
-  :data:`forcedimension_core.dhd.constants.DeviceType.DELTA3`
-- Second generation OMEGA.X Haptic Devices
-  :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA3`
-  :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA33`
-  :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA33_LEFT`
-  :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA331`
-  :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA331_LEFT`
-- SIGMA.X Haptic Devices
-  :data:`forcedimension_core.dhd.constants.DeviceType.SIGMA331`
-  :data:`forcedimension_core.dhd.constants.DeviceType.SIGMA331_LEFT`
-- LAMBDA.X Haptic Devices
-  :data:`forcedimension_core.dhd.constants.DeviceType.LAMBDA331`
-  :data:`forcedimension_core.dhd.constants.DeviceType.LAMBDA331_LEFT`
-- The Force Dimension stand-alone USB 2.0 controller
-  :data:`forcedimension_core.dhd.constants.DeviceType.CONTROLLER`
-  :data:`forcedimension_core.dhd.constants.DeviceType.CONTROLLER_HR`
-- The Novint Falcon
-  :data:`forcedimension_core.dhd.constants.DeviceType.FALCON`
++----------------------------+--------------------------------------------------------------------+
+| Device Family              |  Device Types                                                      |
++============================+====================================================================+
+| 2nd Gen DELTA.X            | :data:`forcedimension_core.dhd.constants.DeviceType.DELTA3`        |
++----------------------------+--------------------------------------------------------------------+
+| 2nd Gen OMEGA.X            | :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA3`        |
+|                            |                                                                    |
+|                            | :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA6_RIGHT`  |
+|                            |                                                                    |
+|                            | :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA6_LEFT`   |
+|                            |                                                                    |
+|                            | :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA7_RIGHT`  |
+|                            |                                                                    |
+|                            | :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA7_LEFT`   |
++----------------------------+--------------------------------------------------------------------+
+| SIGMA.X                    | :data:`forcedimension_core.dhd.constants.DeviceType.SIGMA3`        |
+|                            |                                                                    |
+|                            | :data:`forcedimension_core.dhd.constants.DeviceType.SIGMA7_RIGHT`  |
+|                            |                                                                    |
+|                            | :data:`forcedimension_core.dhd.constants.DeviceType.SIGMA7_LEFT`   |
++----------------------------+--------------------------------------------------------------------+
+| LAMBDA.X                   | :data:`forcedimension_core.dhd.constants.DeviceType.LAMBDA3`       |
+|                            |                                                                    |
+|                            | :data:`forcedimension_core.dhd.constants.DeviceType.LAMBDA7_RIGHT` |
+|                            |                                                                    |
+|                            | :data:`forcedimension_core.dhd.constants.DeviceType.LAMBDA7_LEFT`  |
++----------------------------+--------------------------------------------------------------------+
+| Stand-alone USB Controller | :data:`forcedimension_core.dhd.constants.DeviceType.CONTROLLER`    |
+|                            |                                                                    |
+|                            | :data:`forcedimension_core.dhd.constants.DeviceType.CONTROLLER_HR` |
++----------------------------+--------------------------------------------------------------------+
+| Novint Falcon              | :data:`forcedimension_core.dhd.constants.DeviceType.FALCON`        |
++----------------------------+--------------------------------------------------------------------+
+
 
 Unknown devices that comply with the Force Dimension SDK protocol are referenced by
 :data:`forcedimension_core.dhd.constants.DeviceType.CUSTOM`
+
+The table below summarizes features supported by each device.
+
+
+.. rst-class:: center-columns
+.. table::
+  :widths: auto
+
+  ============== ====== ======== ======= ============== ========= ================ =============
+   Device Type    Base   Handed   Wrist   Active Wrist   Gripper   Active Gripper   Output Bits
+  ============== ====== ======== ======= ============== ========= ================ =============
+  FALCON           ✓       ❌       ❌         ❌           ❌           ❌             ❌
+  DELTA.3          ✓       ❌       ❌         ❌           ❌           ❌             ✓
+  OMEGA.3          ✓       ❌       ❌         ❌           ❌           ❌             ❌
+  SIGMA.3          ✓       ❌       ❌         ❌           ❌           ❌             ❌
+  LAMBDA.3         ✓       ❌       ❌         ❌           ❌           ❌             ❌
+  OMEGA.6          ✓       ✓        ✓          ❌           ❌           ❌             ❌
+  OMEGA.7          ✓       ✓        ✓          ❌           ✓            ✓              ❌
+  SIGMA.7          ✓       ✓        ✓          ✓            ✓            ✓              ✓
+  LAMBDA.7         ✓       ✓        ✓          ✓            ✓            ✓              ❌
+  ============== ====== ======== ======= ============== ========= ================ =============
 
 Axis Convention
 ---------------

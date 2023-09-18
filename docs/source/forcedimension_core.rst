@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
    :maxdepth: 1
 
+   forcedimension_core.containers
    forcedimension_core.dhd
    forcedimension_core.drd
 

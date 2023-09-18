@@ -46,12 +46,17 @@ point in the workspace, while the drdTrack* calls should be used to smoothly con
 a continuous trajectory along a set of points sent asynchronously to the control thread
 (see :func:`forcedimension_core.drd.trackPos()` for more details).
 
-The key difference between the two sets of functions is that drdMove* calls do not guarantee continuity if
-a new call is made before an earlier call finishes. On the other hand, drdTrack* calls do guarantee
-continuity regardless of when they are invoked. However, drdTrack* trajectory generation is performed on
-each axis individually, while drdMove* functions generate trajectories in 3D space. Outside of these different
-behaviors, both drdMove* and drdTrack* calls use a trajectory generation algorithm that guarantees continuous
-acceleration changes. For more details on the trajectory generation, see the section on trajectory generation parameters.
+The key difference between the two sets of functions is that calls to
+:func:`forcedimension_core.drd.moveTo()` and friends do not guarantee continuity if
+a new call is made before an earlier call finishes. On the other hand,
+calls to :func:`forcedimension_core.drd.track()` and friends do guarantee
+continuity regardless of when they are invoked. However, track functions trajectory generation is performed on
+each axis individually, while move functions generate trajectories in 3D space. Outside of these different
+behaviors, both move functions and track functions use a trajectory generation algorithm that guarantees continuous
+acceleration changes. For more details on the trajectory generation, see :ref:`trajectory_generation_parameters`.
+
+
+.. _trajectory_generation_parameters:
 
 Trajectory Generation Parameters
 --------------------------------

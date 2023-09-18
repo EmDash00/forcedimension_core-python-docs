@@ -138,7 +138,7 @@ This mechanism can remove communication overhead without affecting performance i
 significantly affect performance if set to the wrong value. It is recommended to leave the TimeGuard feature to its
 default setting unless a specific software architecture requires it. The SDK calls that trigger the TimeGuard feature
 will return :data:`forcedimension_core.dhd.constants.TIMEGUARD` if communication with the device was deemed unnecessary
-and 0 otherwise. See error management for more information.
+and 0 otherwise. See :ref:`error_management` for more information.
 
 The value of the TimeGuard can be adjust via :func:`forcedimension_core.dhd.expert.setTimeGuard()`.
 See its documentation for more details.

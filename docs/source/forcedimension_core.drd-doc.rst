@@ -28,6 +28,9 @@ guarantee the performance and safety of the regulation (as well as the users and
 However, DRD has been implemented so that it can run with reasonable performance and acceptable safety on
 non-real time platforms, thanks in part to a control instability detection algorithm.
 
+
+.. _regulation:
+
 Regulation
 ----------
 At the heart of the library is the regulation thread, which constraints the position of each joint.

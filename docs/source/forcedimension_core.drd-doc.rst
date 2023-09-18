@@ -73,10 +73,11 @@ Non Real-Time Considerations
 ----------------------------
 On non real-time platforms, the periodicity of the regulation thread cannot be guaranteed. Moreover,
 the Python bindings may also have periodic undeterministic pauses of unknown length due to the Python
-garbage collector (though, this can be mitigated by preallocating memory allocations).
-This has direct consequences on control stability and performance.
+garbage collector (though, this can be mitigated by preallocating memory to avoid allocations inside loops as well
+as using :func:`gc.disable()`).
+These considerations have direct consequences on control stability and performance.
 
-In order to limit the performance degradation, the DRD
+In order to limit the performance degradation, DRD
 implements a regulator that does not assume periodicity and can tolerate some jitter in the control loop.
 In order to optimize the performance of the control thread, :func:`forcedimension_core.drd.setPriorities()`
 can be used to change the priority of  both the calling and the regulation thread. It must however be

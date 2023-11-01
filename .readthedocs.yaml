@@ -12,8 +12,8 @@ build:
       - python3 -m pip install pipx
       - pipx install 'poetry==1.6.0'
     post_install:
-      - poetry install -C "forcedimension_core-python" --with docs --extras numpy
-      - poetry shell
+      - pipx run poetry install -C "forcedimension_core-python" --with docs --extras numpy
+      - pipx run poetry shell
 
 sphinx:
   configuration: docs/source/conf.py

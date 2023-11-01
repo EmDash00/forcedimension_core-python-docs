@@ -8,11 +8,12 @@ build:
     post_create_environment:
       # Install poetry
       # https://python-poetry.org/docs/#installing-manually
-      - curl -sSL https://install.python-poetry.org | python3 -
-      # Tell poetry to not use a virtual environment
-      - poetry config virtualenvs.create false
+      - python3 -m pip install -U pip wheel setuptools
+      - python3 -m pip install pipx
+      - pipx install poetry
     post_install:
       - poetry install -C "forcedimension_core-python" --with docs --extras numpy
+      - poetry shell
 
 sphinx:
   configuration: docs/source/conf.py

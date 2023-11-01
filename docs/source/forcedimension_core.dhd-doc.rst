@@ -94,6 +94,8 @@ For data is passed in or out as a (mutable) sequence of floats
 
 ``force_torque_dof = [f_x, f_y, f_z, t_x, t_y, t_z, f_gripper]``
 
+.. _device_modes:
+
 Device Modes
 ------------
 

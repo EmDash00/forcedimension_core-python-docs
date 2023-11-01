@@ -15,7 +15,8 @@ build:
       - poetry install -C "forcedimension_core-python" --with docs --extras numpy
 
 sphinx:
-   configuration: docs/source/conf.py
+  configuration: docs/source/conf.py
+  fail_on_warning: true
 
 submodules:
   include: all

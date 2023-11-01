@@ -9,12 +9,10 @@ build:
       # Install poetry
       # https://python-poetry.org/docs/#installing-manually
       - python3 -m pip install -U pip wheel setuptools
-      - python3 -m pip install pipx
-      - pipx install 'poetry==1.6.0'
+      - python3 -m pip install 'poetry==1.6.1'
+      - poetry config virtualenvs.create false
     post_install:
-      - pipx run poetry install -C "forcedimension_core-python" --with docs --extras numpy
-      - pipx run poetry shell -C "forcedimension_core-python"
-
+      - poetry install -C "forcedimension_core-python" --with docs --extras numpy
 sphinx:
   configuration: docs/source/conf.py
   fail_on_warning: true

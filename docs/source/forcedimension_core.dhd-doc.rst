@@ -19,47 +19,47 @@ Device Types
 ------------
 
 Devices in the library have a type which can be retrieved via :func:`forcedimension_core.dhd.getSystemType()`
-and they are encoded with :class:`forcedimension_core.dhd.constants.DeviceType`.
+and they are encoded with :class:`forcedimension_core.constants.DeviceType`.
 
 The supported devices (and their encoded system types) for DHD v3.16.0 are:
 
 +----------------------------+--------------------------------------------------------------------+
 | Device Family              |  Device Types                                                      |
 +============================+====================================================================+
-| 2nd Gen DELTA.X            | :data:`forcedimension_core.dhd.constants.DeviceType.DELTA3`        |
+| 2nd Gen DELTA.X            | :data:`forcedimension_core.constants.DeviceType.DELTA3`            |
 +----------------------------+--------------------------------------------------------------------+
-| 2nd Gen OMEGA.X            | :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA3`        |
+| 2nd Gen OMEGA.X            | :data:`forcedimension_core.constants.DeviceType.OMEGA3`            |
 |                            |                                                                    |
-|                            | :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA6_RIGHT`  |
+|                            | :data:`forcedimension_core.constants.DeviceType.OMEGA6_RIGHT`      |
 |                            |                                                                    |
-|                            | :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA6_LEFT`   |
+|                            | :data:`forcedimension_core.constants.DeviceType.OMEGA6_LEFT`       |
 |                            |                                                                    |
-|                            | :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA7_RIGHT`  |
+|                            | :data:`forcedimension_core.constants.DeviceType.OMEGA7_RIGHT`      |
 |                            |                                                                    |
-|                            | :data:`forcedimension_core.dhd.constants.DeviceType.OMEGA7_LEFT`   |
+|                            | :data:`forcedimension_core.constants.DeviceType.OMEGA7_LEFT`       |
 +----------------------------+--------------------------------------------------------------------+
-| SIGMA.X                    | :data:`forcedimension_core.dhd.constants.DeviceType.SIGMA3`        |
+| SIGMA.X                    | :data:`forcedimension_core.constants.DeviceType.SIGMA3`            |
 |                            |                                                                    |
-|                            | :data:`forcedimension_core.dhd.constants.DeviceType.SIGMA7_RIGHT`  |
+|                            | :data:`forcedimension_core.constants.DeviceType.SIGMA7_RIGHT`      |
 |                            |                                                                    |
-|                            | :data:`forcedimension_core.dhd.constants.DeviceType.SIGMA7_LEFT`   |
+|                            | :data:`forcedimension_core.constants.DeviceType.SIGMA7_LEFT`       |
 +----------------------------+--------------------------------------------------------------------+
-| LAMBDA.X                   | :data:`forcedimension_core.dhd.constants.DeviceType.LAMBDA3`       |
+| LAMBDA.X                   | :data:`forcedimension_core.constants.DeviceType.LAMBDA3`           |
 |                            |                                                                    |
-|                            | :data:`forcedimension_core.dhd.constants.DeviceType.LAMBDA7_RIGHT` |
+|                            | :data:`forcedimension_core.constants.DeviceType.LAMBDA7_RIGHT`     |
 |                            |                                                                    |
-|                            | :data:`forcedimension_core.dhd.constants.DeviceType.LAMBDA7_LEFT`  |
+|                            | :data:`forcedimension_core.constants.DeviceType.LAMBDA7_LEFT`      |
 +----------------------------+--------------------------------------------------------------------+
-| Stand-alone USB Controller | :data:`forcedimension_core.dhd.constants.DeviceType.CONTROLLER`    |
+| Stand-alone USB Controller | :data:`forcedimension_core.constants.DeviceType.CONTROLLER`        |
 |                            |                                                                    |
-|                            | :data:`forcedimension_core.dhd.constants.DeviceType.CONTROLLER_HR` |
+|                            | :data:`forcedimension_core.constants.DeviceType.CONTROLLER_HR`     |
 +----------------------------+--------------------------------------------------------------------+
-| Novint Falcon              | :data:`forcedimension_core.dhd.constants.DeviceType.FALCON`        |
+| Novint Falcon              | :data:`forcedimension_core.constants.DeviceType.FALCON`            |
 +----------------------------+--------------------------------------------------------------------+
 
 
 Unknown devices that comply with the Force Dimension SDK protocol are referenced by
-:data:`forcedimension_core.dhd.constants.DeviceType.CUSTOM`
+:data:`forcedimension_core.constants.DeviceType.CUSTOM`
 
 The table below summarizes features supported by each device.
 
@@ -86,7 +86,7 @@ Axis Convention
 ---------------
 
 For data is passed in or out as a (mutable) sequence of floats
-(at :data:`forcedimension_core.dhd.constants.MAX_DOF` length) it is encoded as follows:
+(at :data:`forcedimension_core.constants.MAX_DOF` length) it is encoded as follows:
 
 ``postion_dof = [pos_x, pos_y, pos_z, euler_angle_x, euler_angle_y, euler_angle_z, gripper_gap]``
 
@@ -159,8 +159,8 @@ The estimated velocity can be retrieved by calling:
 - :func:`forcedimension_core.dhd.getGripperAngularVelocityRad()`
 - :func:`forcedimension_core.dhd.getGripperAngularVelocityDeg()`
 
-Currently, the only supported velocity estimator mode is :data:`forcedimension_core.dhd.constants.VELOCITY_WINDOWING`.
-The default window size (in [ms]) for the velocity estimator is :data:`forcedimension_core.dhd.constants.VELOCITY_WINDOW`.
+Currently, the only supported velocity estimator mode is :data:`forcedimension_core.constants.VELOCITY_WINDOWING`.
+The default window size (in [ms]) for the velocity estimator is :data:`forcedimension_core.constants.VELOCITY_WINDOW`.
 
 .. _time_guard:
 
@@ -175,7 +175,7 @@ data if recent data from an earlier communication event is still recent enough.
 This mechanism can remove communication overhead without affecting performance if set properly, but can also
 significantly affect performance if set to the wrong value. It is recommended to leave the TimeGuard feature to its
 default setting unless a specific software architecture requires it. The SDK calls that trigger the TimeGuard feature
-will return :data:`forcedimension_core.dhd.constants.TIMEGUARD` if communication with the device was deemed unnecessary
+will return :data:`forcedimension_core.constants.TIMEGUARD` if communication with the device was deemed unnecessary
 and 0 otherwise. See :ref:`error_management` for more information.
 
 The value of the TimeGuard can be adjust via :func:`forcedimension_core.dhd.expert.setTimeGuard()`.
@@ -198,7 +198,7 @@ Error Management
 ----------------
 
 DHD uses a thread-safe global accessible via :func:`forcedimension_core.dhd.errorGetLast()` to store the last
-error that occurred in each running thread. These errors are encoded by :data:`forcedimension_core.dhd.constants.ErrorNum`.
+error that occurred in each running thread. These errors are encoded by :data:`forcedimension_core.constants.ErrorNum`.
 You can get a message that describes the error with :func:`forcedimension_core.dhd.errorGetLastStr()` and
 :func:`forcedimension_core.dhd.errorGetStr()`.
 
@@ -285,7 +285,7 @@ For 6 DOF Force Dimension devices, the controller performs a calibration procedu
 COM operating Mode
 ^^^^^^^^^^^^^^^^^^
 USB operations can be executed in two different modes:
-:data:`forcedimension_core.dhd.constants.ComMode.SYNC` and  :data:`forcedimension_core.dhd.constants.ComMode.ASYNC`.
+:data:`forcedimension_core.constants.ComMode.SYNC` and  :data:`forcedimension_core.constants.ComMode.ASYNC`.
 Other operation modes are reported for virtual devices
-(:data:`forcedimension_core.dhd.constants.ComMode.VIRTUAL`) and devices that are connected over the network
-(:data:`forcedimension_core.dhd.constants.ComMode.NETWORK`). Please check the documentation of each mode for more details.
+(:data:`forcedimension_core.constants.ComMode.VIRTUAL`) and devices that are connected over the network
+(:data:`forcedimension_core.constants.ComMode.NETWORK`). Please check the documentation of each mode for more details.

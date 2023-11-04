@@ -34,7 +34,7 @@ Below is a brief example (omitting error checking for brevity).
 
 
 Theory of Operation
-===================
+-------------------
 
 .. note::
    This section is left for library developers and higher level users.

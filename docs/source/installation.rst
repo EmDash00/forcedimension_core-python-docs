@@ -1,3 +1,5 @@
+.. _installation:
+
 Installation
 ============
 
@@ -5,7 +7,7 @@ Install the Package via PyPI
 ----------------------------
 
 A package is available on PyPI. The most recent version will always support
-every supported Python version at the time of release (currently ≥3.8).
+every supported Python version at the time of release (currently 3.8+).
 
 .. code-block:: bash
 
@@ -17,7 +19,7 @@ containers (see :ref:`dco`).
 
 .. code-block:: bash
 
-  python3 -m pip install forcedimension_core[numpy]
+  python3 -m pip install "forcedimension_core[numpy]"
 
 
 Install the Force Dimension SDK

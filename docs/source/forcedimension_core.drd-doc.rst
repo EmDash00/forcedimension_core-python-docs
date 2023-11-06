@@ -28,6 +28,9 @@ guarantee the performance and safety of the regulation (as well as the users and
 However, DRD has been implemented so that it can run with reasonable performance and acceptable safety on
 non-real time platforms, thanks in part to a control instability detection algorithm.
 
+
+.. _regulation:
+
 Regulation
 ----------
 At the heart of the library is the regulation thread, which constraints the position of each joint.
@@ -43,12 +46,17 @@ point in the workspace, while the drdTrack* calls should be used to smoothly con
 a continuous trajectory along a set of points sent asynchronously to the control thread
 (see :func:`forcedimension_core.drd.trackPos()` for more details).
 
-The key difference between the two sets of functions is that drdMove* calls do not guarantee continuity if
-a new call is made before an earlier call finishes. On the other hand, drdTrack* calls do guarantee
-continuity regardless of when they are invoked. However, drdTrack* trajectory generation is performed on
-each axis individually, while drdMove* functions generate trajectories in 3D space. Outside of these different
-behaviors, both drdMove* and drdTrack* calls use a trajectory generation algorithm that guarantees continuous
-acceleration changes. For more details on the trajectory generation, see the section on trajectory generation parameters.
+The key difference between the two sets of functions is that calls to
+:func:`forcedimension_core.drd.moveTo()` and friends do not guarantee continuity if
+a new call is made before an earlier call finishes. On the other hand,
+calls to :func:`forcedimension_core.drd.track()` and friends do guarantee
+continuity regardless of when they are invoked. However, track functions trajectory generation is performed on
+each axis individually, while move functions generate trajectories in 3D space. Outside of these different
+behaviors, both move functions and track functions use a trajectory generation algorithm that guarantees continuous
+acceleration changes. For more details on the trajectory generation, see :ref:`trajectory_generation_parameters`.
+
+
+.. _trajectory_generation_parameters:
 
 Trajectory Generation Parameters
 --------------------------------
@@ -65,10 +73,11 @@ Non Real-Time Considerations
 ----------------------------
 On non real-time platforms, the periodicity of the regulation thread cannot be guaranteed. Moreover,
 the Python bindings may also have periodic undeterministic pauses of unknown length due to the Python
-garbage collector (though, this can be mitigated by preallocating memory allocations).
-This has direct consequences on control stability and performance.
+garbage collector (though, this can be mitigated by preallocating memory to avoid allocations inside loops as well
+as using :func:`gc.disable()`).
+These considerations have direct consequences on control stability and performance.
 
-In order to limit the performance degradation, the DRD
+In order to limit the performance degradation, DRD
 implements a regulator that does not assume periodicity and can tolerate some jitter in the control loop.
 In order to optimize the performance of the control thread, :func:`forcedimension_core.drd.setPriorities()`
 can be used to change the priority of  both the calling and the regulation thread. It must however be

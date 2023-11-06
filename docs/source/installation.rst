@@ -18,13 +18,17 @@ Go to https://www.forcedimension.com/software and install the latest version of 
 The library will always check that the SDK version installed is greater than the version
 that it targets (i.e. v3.16.0 is assumed to be compatible with v3.15.0).
 
-This release of the Force Dimension Python Bindings targets v3.14.0. The library will search
-in the following locations to find the Force Dimension SDK dynamic link libraries.
+This release of the Force Dimension Python Bindings targets v3.16.0+. The library will search
+in the following locations to find the Force Dimension SDK dynamic link libraries. The order
+shown below is also the precendence of the search (the runtime will search the list up to down
+and load the first library found).
+
+
 
 On Mac/Linux:
 
+-  ``~/.local/lib``
 -  ``/usr/local/lib``
--  ``/usr/lib``
 
 On Windows:
 
@@ -43,17 +47,20 @@ Add the following to the Makefile included in the library's root folder, replaci
 with your version. Then run ``make install``. If you installed a previous version, this will change the
 default installation version to the one you are installing.
 
+Linux Makefile Install
+""""""""""""""""""""""
+
 .. code-block:: make
 
   install:
     cp include/* /usr/local/include
-    cp lib/release/lin-*-gcc/* /usr/local/lib
+    cp lib/release/*/* /usr/local/lib
     chmod 755 /usr/local/lib/libdhd.so.X.X.X
     chmod 755 /usr/local/lib/libdrd.so.X.X.X
     chmod 755 /usr/local/lib/libdhd.a
     chmod 755 /usr/local/lib/libdrd.a
-    ln -s /usr/local/lib/libdhd.so /usr/local/lib/libdhd.so.X.X.X
-    ln -s /usr/local/lib/libdrd.so /usr/local/lib/libdrd.so.X.X.X
+    ln -s /usr/local/lib/libdhd.X.X.X.so /usr/local/lib/libdhd.so
+    ln -s /usr/local/lib/libdrd.X.X.X.so /usr/local/lib/libdrd.so
 
   uninstall:
     rm /usr/local/include/dhdc.h
@@ -66,18 +73,45 @@ default installation version to the one you are installing.
     rm /usr/local/lib/libdrd.so
 
 
+Mac Makefile Install
+""""""""""""""""""""""
+
+.. code-block:: make
+
+  install:
+    cp include/* /usr/local/include
+    cp lib/release/*/* /usr/local/lib
+    chmod 755 /usr/local/lib/libdhd.X.X.X.dylib
+    chmod 755 /usr/local/lib/libdrd.X.X.X.dylib
+    chmod 755 /usr/local/lib/libdhd.a
+    chmod 755 /usr/local/lib/libdrd.a
+    ln -s /usr/local/lib/libdhd.X.X.X.dylib /usr/local/lib/libdhd.dylib
+    ln -s /usr/local/lib/libdrd.X.X.X.dylib /usr/local/lib/libdrd.dylib
+
+
+  uninstall:
+    rm /usr/local/include/dhdc.h
+    rm /usr/local/include/drdc.h
+    rm /usr/local/lib/libdhd.a
+    rm /usr/local/lib/libdhd.dylib.X.X.X
+    rm /usr/local/lib/libdhd.dylib
+    rm /usr/local/lib/libdrd.a
+    rm /usr/local/lib/libdrd.dylib.X.X.X
+    rm /usr/local/lib/libdrd.dylib
+
+
 Non-System-Wide Installs
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you don't wish to make a system-wide installation, simply set the
-``FORCEDIM_SDK`` environment variable to the root folder of the Force Dimension
+``FDSDK`` environment variable to the root folder of the Force Dimension
 SDK installation (the ``lib`` folder should be one level under the root installation folder).
 This may be desirable if you do not have administrator-level priveleges for your system.
 
 .. note::
-  The ``FORCEDIM_SDK`` environment variable takes over default search directories
-  (i.e. if it is set, the library will always load from there instead of the default
-  search directories). This can be helpful if you have multiple versions of
+  The ``FDSDK`` environment variable takes precedence over other default search directories
+  (i.e. if it is set, the library will always try to load from there first instead of the
+  default search directories). This can be helpful if you have multiple versions of
   the Force Dimension SDK.
 
 

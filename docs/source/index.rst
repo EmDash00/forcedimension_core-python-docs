@@ -83,6 +83,7 @@ The Python code itself is licensed under GPLv3 for the benefit of public researc
    modules.rst
    installation.rst
    theory_of_operation.rst
+   direct_copy_optimization.rst
    forcedimension_core.dhd-doc.rst
    forcedimension_core.drd-doc.rst
 

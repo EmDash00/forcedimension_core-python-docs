@@ -1,25 +1,22 @@
 # Force Dimension Core Python Bindings Documentation
 
-![Documentation Status](https://img.shields.io/readthedocs/force-dimension-core-python-documentation)
-
 This is a GitHub repository dedicated to the [Force Dimension Core Python Bindings](https://github.com/EmDash00/forcedimension_core-python) documentation.
 
 If you're looking for the documentation please go to:
 
 https://force-dimension-core-python-documentation.readthedocs.io
 
-## Install required dependencies
 
+## Install dependencies
 
 ```
-python3 -m pip install pipenv  # if you don't already have it
-python3 -m pipenv install
+poetry -C ../forcedimension_core-python install --with docs --extras numpy
 ```
-
 
 ## Building the Documentation
 
+In the docs folder:
 
 ```
-pipenv run sphinx-build -b html source/ build/
+poetry -C ../forcedimension_core-python run make html
 ```

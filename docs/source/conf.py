@@ -14,9 +14,8 @@
 #
 import os
 import sys
-import builtins
 
-builtins.__sphinx_build__ = True
+os.environ['__fdsdkpy_sphinx_build__'] = 'True'
 
 # sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(
@@ -31,9 +30,9 @@ copyright = '2023, Ember "Emmy" Chow'
 author = 'Ember "Emmy" Chow'
 
 # The short X.Y version
-version = '0.1.0'
+version = '1.0.0'
 # The full version, including alpha/beta/rc tags
-release = '0.1.0'
+release = '1.0.0rc1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -95,7 +94,8 @@ html_theme = 'sphinx_rtd_theme'
 #
 # html_theme_options = {}
 
-# html_static_path = ['_static']
+html_static_path = ['_static']
+html_css_files = ['table.css']
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
@@ -190,4 +190,7 @@ epub_exclude_files = ['search.html']
 # -- Options for intersphinx extension ---------------------------------------
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
+intersphinx_mapping = {
+    'numpy': ('https://numpy.org/doc/1.20/', None),
+    'python': ('https://docs.python.org/3', None)
+}

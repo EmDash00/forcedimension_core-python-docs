@@ -104,10 +104,10 @@ Mac Makefile Install
     rm /usr/local/include/dhdc.h
     rm /usr/local/include/drdc.h
     rm /usr/local/lib/libdhd.a
-    rm /usr/local/lib/libdhd.dylib.X.X.X
+    rm /usr/local/lib/libdhd.X.X.X.dylib
     rm /usr/local/lib/libdhd.dylib
     rm /usr/local/lib/libdrd.a
-    rm /usr/local/lib/libdrd.dylib.X.X.X
+    rm /usr/local/lib/libdrd.X.X.X.dylib
     rm /usr/local/lib/libdrd.dylib
 
 

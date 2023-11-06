@@ -35,8 +35,8 @@ Below is a brief example (omitting error checking for brevity).
    dhd.direct.getPosition(out=pos)
 
 Which containers should you use when? Direct copy optimized functions hint at which
-container to use in the "See Also" section. These containers are memory safe.
-If an improper container is used, ``ctypes`` will raise a :class:`ctypes.ArgumentError`.
+container to use in the "See Also" section of their docstring. These containers are memory
+safe. If an improper container is used, ``ctypes`` will raise a :class:`ctypes.ArgumentError`.
 
 There are also containers which subclass NumPy's :class:`numpy.ndarray` available if NumPy is
 installed (NumPy 1.20+ required). See :ref:`installation` for more details.

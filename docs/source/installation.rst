@@ -1,3 +1,5 @@
+.. _installation:
+
 Installation
 ============
 
@@ -5,11 +7,11 @@ Install the Package via PyPI
 ----------------------------
 
 A package is available on PyPI. The most recent version will always support
-every supported Python version at the time of release (currently ≥3.8).
+every supported Python version at the time of release (currently 3.8+).
 
 .. code-block:: bash
 
-   python3 -m pip install forcedimension_core
+   python3 -m pip install forcedimension-core
 
 
 NumPy is an optional dependency which allows the usage of special NumPy style
@@ -17,7 +19,7 @@ containers (see :ref:`dco`).
 
 .. code-block:: bash
 
-  python3 -m pip install forcedimension_core[numpy]
+  python3 -m pip install "forcedimension-core[numpy]"
 
 
 Install the Force Dimension SDK
@@ -102,10 +104,10 @@ Mac Makefile Install
     rm /usr/local/include/dhdc.h
     rm /usr/local/include/drdc.h
     rm /usr/local/lib/libdhd.a
-    rm /usr/local/lib/libdhd.dylib.X.X.X
+    rm /usr/local/lib/libdhd.X.X.X.dylib
     rm /usr/local/lib/libdhd.dylib
     rm /usr/local/lib/libdrd.a
-    rm /usr/local/lib/libdrd.dylib.X.X.X
+    rm /usr/local/lib/libdrd.X.X.X.dylib
     rm /usr/local/lib/libdrd.dylib
 
 

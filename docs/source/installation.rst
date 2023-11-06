@@ -11,6 +11,15 @@ every supported Python version at the time of release (currently ≥3.8).
 
    python3 -m pip install forcedimension_core
 
+
+NumPy is an optional dependency which allows the usage of special NumPy style
+containers (see :ref:`dco`).
+
+.. code-block:: bash
+
+  python3 -m pip install forcedimension_core[numpy]
+
+
 Install the Force Dimension SDK
 -------------------------------
 

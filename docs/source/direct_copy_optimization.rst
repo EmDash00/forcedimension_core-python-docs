@@ -1,3 +1,5 @@
+.. _dco:
+
 Direct Copy Optimization
 ========================
 .. note::
